@@ -1,10 +1,10 @@
 import 'package:api_integration_project/controller/resetapi/api_reset_service.dart';
-import 'package:api_integration_project/view/screen/Verifyotp.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/src/widgets/placeholder.dart';
 
 import '../../../model/auth_reset.dart';
+import '../verifyScreen.dart';
 
 
 
@@ -40,7 +40,7 @@ class _HomeScreenState extends State<ResetCcreen> {
               ElevatedButton(
                 onPressed: () async {
                   Navigator.push(context, MaterialPageRoute(builder: (c)=> const
-                  VerifyOtp()));
+                  Verify()));
                   resetModel = await MyResetService.methodName(
                     employed_id_re.text,
                   );

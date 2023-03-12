@@ -23,7 +23,7 @@ class _HomeScreenState extends State<HomeScreen> {
       body: SingleChildScrollView(
         child: Column(
           children: [
-            SizedBox(height: 20,),
+            SizedBox(height: 200,),
             TextField(
               controller: _employedId,
              decoration: InputDecoration(
