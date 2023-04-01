@@ -39,8 +39,8 @@ class _HomeScreenState extends State<ResetCcreen> {
               ),
               ElevatedButton(
                 onPressed: () async {
-                  Navigator.push(context, MaterialPageRoute(builder: (c)=> const
-                  Verify()));
+                  Navigator.push(context, MaterialPageRoute(builder: (c)=>
+                  Verify(id: employed_id_re.text.toString(),)));
                   resetModel = await MyResetService.methodName(
                     employed_id_re.text,
                   );

@@ -5,15 +5,17 @@ import '../../controller/setpasswprd/set_password_service.dart';
 
 
 class SetPassScreen extends StatefulWidget {
-  const SetPassScreen({Key? key}) : super(key: key);
+  final String id;
+  final String otp;
+  const SetPassScreen({Key? key, required this.id, required this.otp}) : super(key: key);
 
   @override
   State<SetPassScreen> createState() => _SetPassScreenState();
 }
 
 class _SetPassScreenState extends State<SetPassScreen> {
-  final TextEditingController _emPloYeId = TextEditingController();
-  final TextEditingController _otp = TextEditingController();
+  // final TextEditingController _emPloYeId = TextEditingController();
+  // final TextEditingController _otp = TextEditingController();
   final TextEditingController _pass = TextEditingController();
   final TextEditingController _newPass = TextEditingController();
   Auth_Set_Pass? auth_set_pass;
@@ -27,17 +29,17 @@ class _SetPassScreenState extends State<SetPassScreen> {
       body: SafeArea(
         child: Column(
           children: [
-            TextField(
-              controller: _emPloYeId,
-              decoration: InputDecoration(hintText: "id"),
-            ),
+            // TextField(
+            //   controller: _emPloYeId,
+            //   decoration: InputDecoration(hintText: "id"),
+            // ),
             SizedBox(
               height: 20,
             ),
-            TextField(
-              controller: _otp,
-              decoration: InputDecoration(hintText: "otp"),
-            ),
+            // TextField(
+            //   controller: _otp,
+            //   decoration: InputDecoration(hintText: "otp"),
+            // ),
             SizedBox(
               height: 20,
             ),
@@ -58,8 +60,8 @@ class _SetPassScreenState extends State<SetPassScreen> {
             ElevatedButton(
                 onPressed: () async {
                   auth_set_pass = await SetPaswordService.methodset(
-                      _emPloYeId.text,
-                      _otp.text,
+                      widget.id,
+                      widget.otp,
                       _pass.text,
                       _newPass.text);
                   setState(() {});

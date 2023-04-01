@@ -1,9 +1,11 @@
 
+import 'package:api_integration_project/controller/keywords.dart';
 import 'package:api_integration_project/controller/profile/my_key%20_words.dart';
 import 'package:api_integration_project/controller/profile/user_model.dart';
 import 'package:api_integration_project/view/login_page_ar_por/update_Screen.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
+import 'package:shared_preferences/shared_preferences.dart';
 import 'dart:convert';
 
 import '../../view/login_page_ar_por/EditProfile.dart';
@@ -70,6 +72,9 @@ class _api_profileState extends State<api_profile> {
   }
 
   Future<User?> mLoadData() async {
+    final SharedPreferences sharedPreferences =await SharedPreferences.getInstance();
+
+    String? mytoken = sharedPreferences.getString(MyKeyWords.token);
 
      var r = await http.get(
           Uri.parse(
@@ -78,7 +83,8 @@ class _api_profileState extends State<api_profile> {
             'Content-Type': 'application/json',
             "api_key": '5267556B58703273357638792F423F45',
             "Authorization":
-                "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzZmFmZmQ2MTVlZjJhZTY4OTYxZDVhNSIsIm5hbWUiOiJhbGFtaW4iLCJyb2xlIjoiZW1wbG95ZWUiLCJpYXQiOjE2NzkzODk1MzQsImV4cCI6MTY3OTQ3NTkzNH0.ZVwIsP38m13ZmEnabklYmrz1aUdswK0oeilmohB0qj4"
+                "Bearer $mytoken" //r aita use kora hoise login page theke
+                // "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzZmFmZmQ2MTVlZjJhZTY4OTYxZDVhNSIsIm5hbWUiOiJLYXNlbSIsInJvbGUiOiJlbXBsb3llZSIsImlhdCI6MTY4MDMzNTEzMCwiZXhwIjoxNjgwNDIxNTMwfQ.HPzOIsDc7Kz2xYAgDkLvyXSsKUqFLETRtk_ORMXUHYs"
           });
       //print("our result:  ${r.body}");
       Map result = json.decode(r.body);

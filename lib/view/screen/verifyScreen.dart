@@ -8,14 +8,17 @@ import '../../model/auth_verify.dart';
 
 
 class Verify extends StatefulWidget {
-  const Verify({Key? key}) : super(key: key);
+
+  final String id;
+
+  const Verify({Key? key, required this.id}) : super(key: key);
 
   @override
   State<Verify> createState() => _VerifyState();
 }
 
 class _VerifyState extends State<Verify> {
-  final TextEditingController _verifyId = TextEditingController();
+
   final TextEditingController _otpVerify = TextEditingController();
   Auth_veridy? auth_veridy;
 
@@ -38,11 +41,7 @@ class _VerifyState extends State<Verify> {
                 SizedBox(
                   height: 20,
                 ),
-                TextField(
-                  controller: _verifyId,
-                  decoration: InputDecoration(hintText: "Id"),
 
-                ),SizedBox(height: 20,),
                 TextField(
                   controller: _otpVerify,
                   decoration: InputDecoration(hintText: "otpcode"),
@@ -54,10 +53,12 @@ class _VerifyState extends State<Verify> {
 
                ElevatedButton(
                 onPressed: () async {
-                  Navigator.push(context, MaterialPageRoute(builder: (c)=> const
-                  SetPassScreen()));
+                  Navigator.push(context, MaterialPageRoute(builder: (c)=>
+                  SetPassScreen(id: widget.id, otp: _otpVerify.text,))); //() ai tar viote lekhte hoi ja ja ami porer page a use korte chai na
                       auth_veridy = await VerifyService.verifyMethod(
-                        _verifyId.text,
+
+                        widget.id,  //aita lekhte hoi pore page a na lekhar jonno
+
                         _otpVerify.text,
                       );
                       setState(() {});
